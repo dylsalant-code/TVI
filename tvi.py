@@ -82,6 +82,7 @@ def fetch_html(url):
         _last_request[0] = time.time()
         status = r.status_code
         if status == 200:
+            r.encoding = "utf-8"  # keeps names like Jokić from getting garbled
             # bbref hides some tables inside HTML comments
             return r.text.replace("<!--", "").replace("-->", "")
         if status == 404:
